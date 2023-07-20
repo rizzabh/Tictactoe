@@ -1,10 +1,10 @@
 const statusDisplay = document.querySelector('.status');
 
-let gameActive = true;
+let display = true;
 let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
-const winningMessage = () => `Player ${currentPlayer} won`;
+const winMessage = () => `Player ${currentPlayer} won`;
 const drawMessage = () => `Draw`;
 const currentPlayerTurn = () => `${currentPlayer}'s turn`;
 
@@ -48,18 +48,18 @@ function handleResultValidation() {
     }
 
     if (roundWon) {
-        statusDisplay.innerHTML = winningMessage();
-        video.classList.add("e")
+        statusDisplay.innerHTML = winMessage();
+        display = false;
         
-
-        gameActive = false;
         return;
+
     }
 
     const roundDraw = !gameState.includes("");
     if (roundDraw) {
         statusDisplay.innerHTML = drawMessage();
-        gameActive = false;
+        display = false;
+        
         return;
     }
 
@@ -70,7 +70,7 @@ function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
 
-    if (gameState[clickedCellIndex] !== "" || !gameActive)
+    if (gameState[clickedCellIndex] !== "" || !display)
         return;
 
     handleCellPlayed(clickedCell, clickedCellIndex);
@@ -78,7 +78,7 @@ function handleCellClick(clickedCellEvent) {
 }
 
 function handleRestartGame() {
-    gameActive = true;
+    display = true;
     currentPlayer = "X";
     gameState = ["", "", "", "", "", "", "", "", ""];
     statusDisplay.innerHTML = currentPlayerTurn();
