@@ -4,8 +4,8 @@ let display = true;
 let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
-const winMessage = () => `Player ${currentPlayer} won`;
-const drawMessage = () => `Draw`;
+const winMessage = () => `Player ${currentPlayer} won. W`;
+const drawMessage = () => `L players`;
 const currentPlayerTurn = () => `${currentPlayer}'s turn`;
 
 statusDisplay.innerHTML = currentPlayerTurn();
